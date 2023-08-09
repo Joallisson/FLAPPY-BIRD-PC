@@ -5,11 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Vector3 axis;
-    [SerializeField] float gravity = -9f;
+    [SerializeField] float gravity, force;
     
     void Start()
     {
-        
+        gravity = -9f;
+        force = 5f;
     }
 
   
@@ -17,5 +18,10 @@ public class Player : MonoBehaviour
     {
         axis.y += gravity * Time.deltaTime;
         transform.position += axis * Time.deltaTime;
+
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            axis = Vector2.up * force;
+        }
     }
 }

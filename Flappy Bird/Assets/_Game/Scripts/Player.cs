@@ -6,11 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Vector3 axis;
     [SerializeField] float gravity, force;
+    private GameManager gameManager;
     
     void Start()
     {
         gravity = -9f;
         force = 5f;
+        gameManager = FindObjectOfType<GameManager>();
+
     }
 
   
@@ -24,4 +27,14 @@ public class Player : MonoBehaviour
             axis = Vector2.up * force;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Obstacles"))
+        {
+            gameManager.GameOver();
+        }
+    }
+
+
 }

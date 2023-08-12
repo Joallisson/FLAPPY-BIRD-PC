@@ -34,7 +34,11 @@ public class Player : MonoBehaviour
         {
             gameManager.GameOver();
         }
-    }
 
+        if (collision.CompareTag("Scoring"))
+        {
+            gameManager.Scoring();
+        }
+    }
 
 }

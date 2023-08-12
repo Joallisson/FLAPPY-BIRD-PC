@@ -51,4 +51,10 @@ public class GameManager : MonoBehaviour
         score++;
         scoreText.text = score.ToString();
     }
+
+    public void ButtonExitGame()
+    {
+        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+        activity.Call<bool>("moveTaskToBack", true);
+    }
 }

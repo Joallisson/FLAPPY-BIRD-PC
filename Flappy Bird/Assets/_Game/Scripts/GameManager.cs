@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverObj;
     [SerializeField] private GameObject startGameObj;
     private Player player;
+    
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     public void ButtonExitGame()

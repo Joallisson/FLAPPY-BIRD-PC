@@ -7,25 +7,18 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 axis;
     [SerializeField] float gravity, force;
     private GameManager gameManager;
-    
+
     void Start()
     {
         gravity = -9f;
         force = 5f;
         gameManager = FindObjectOfType<GameManager>();
-
     }
 
   
     void Update()
     {
-        axis.y += gravity * Time.deltaTime;
-        transform.position += axis * Time.deltaTime;
-
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            axis = Vector2.up * force;
-        }
+        Jump();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,6 +31,18 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Scoring"))
         {
             gameManager.Scoring();
+        }
+    }
+
+    private void Jump()
+    {
+        axis.y += gravity * Time.deltaTime;
+        transform.position += axis * Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            axis = Vector2.up * force;
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
 
